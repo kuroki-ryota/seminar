@@ -5,7 +5,7 @@ Cubical Agda で Diaconescu の定理の証明を実装することを目標と�
 - propositional truncation
 - h-level
   - contractible type, proposition, set
-- index set に条件を課さない選択
+- index type に条件を課さない選択
 - S^1
   - 連結であること
   - set でないこと
