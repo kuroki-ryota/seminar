@@ -1,6 +1,6 @@
 {-# OPTIONS --without-K --safe #-}
 module 0811-induction where
-open import 0811-inductive-types
+open import 0811-inductive-types public
 
 -- induction (inductive type の elim. rule)の内容
   -- inductive type の項から他の型の項を作る方法
@@ -137,7 +137,7 @@ Leibniz' a .a c refl = c
 -- K a c refl = c
 -- -without-K を抜くと、パターンマッチが強くなってこれが示せる
   -- これによって強正規化や canonicity が崩れるわけではない
-  -- 排中律などとは違って、 K はちゃんと computational content を持っている
+  -- K はちゃんと computational content を持っている
 -- ただ、 univalence と矛盾するので HoTT をやるときは -without-K を入れる
 
 open unbased-id
