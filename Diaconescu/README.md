@@ -3,7 +3,14 @@ Cubical Agda で Diaconescu の定理の証明を実装することを目標と�
 html : https://yotsunva.github.io/seminar/Diaconescu/html/
 
 ## 08-?? で話す内容（予定）
+- cubical type theory の最初らへん
+  - hcomp
+  - transp （今回は使わないので軽めの話）
 - h-level (Hlevel.agda)
+  - h-level n → h-level (suc n)
+  - isProp (B x) → isProp ((x : A) → B x)
+    - function extensionality
+  - decidability, stability, constant endofunction
   - Hedberg's theorem
 
 
