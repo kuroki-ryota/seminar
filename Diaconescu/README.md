@@ -1,8 +1,9 @@
 # 選択公理と排中律の周辺のお話
-Cubical Agda で Diaconescu の定理の証明を実装することを目標として、寄り道しながら喋る予定。
-html : https://yotsunva.github.io/seminar/Diaconescu/html/
+Cubical Agda で Diaconescu の定理の証明を実装することを目標として、寄り道しながら話す予定（寄り道で終わりそう）。
 
-## 08-?? で話す内容（予定）
+Agda ファイルの html 版 : https://yotsunva.github.io/seminar/Diaconescu/html/
+
+## 08-09 （予定）
 - cubical type theory の最初らへん
   - hcomp
   - transp （今回は使わないので軽め）
