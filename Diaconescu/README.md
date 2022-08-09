@@ -3,7 +3,7 @@ Cubical Agda で Diaconescu の定理の証明を実装することを目標と�
 
 Agda ファイルの html 版 : https://yotsunva.github.io/seminar/Diaconescu/html/
 
-## 08-09 （予定）
+## 08-09
 - cubical type theory の最初らへん
   - hcomp
   - transp （今回は使わないので軽め）
@@ -15,23 +15,22 @@ Agda ファイルの html 版 : https://yotsunva.github.io/seminar/Diaconescu/ht
   - Hedberg's theorem
   - isSet Bool
 
-
-## いつか扱うかもしれない内容
-- ¬ (isSet S^1)
-  - transp, tt≠ff
-  - parity
-    - Glue, univalence
+## 08-??
+- transp, tt≠ff
+- higher inductive type
+  - S1
+- refl≠loop
+  - Glue, univalence
   - ¬ LEM∞
-- LEM∞ の周辺
-  - parametricity
+- univalence と parametric polymorphism
   - ¬ LEM∞
 - LEM の定式化
+
+## いつか扱うかもしれない内容
 - 構成的な選択
 - propositional truncation
 - h-level
-  - contractible type, proposition, set
 - index type に条件を課さない選択
 - S^1
   - 連結であること
-  - set でないこと
 - ...
