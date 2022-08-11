@@ -21,8 +21,8 @@ data Σ' {ℓ₁ ℓ₂} (A : Type ℓ₁) (B : A → Type ℓ₂) : Type (ℓ�
 record Σ {ℓ₁ ℓ₂} (A : Type ℓ₁) (B : A → Type ℓ₂) : Type (ℓ₁ ⊔ ℓ₂) where
   constructor _,_
   field
-    x : A
-    y : B x
+    fst : A
+    snd : B fst
 
 open Σ public
 syntax Σ A (λ x → Bx) = Σ x ꞉ A , Bx
@@ -33,6 +33,9 @@ data _+_ {ℓ₁ ℓ₂} (A : Type ℓ₁) (B : Type ℓ₂) : Type (ℓ₁ ⊔ 
 
 data Empty : Type where
 
+¬ : (A : Type ℓ) → Type ℓ
+¬ A = A → Empty
+
 data Bool : Type where
   tt ff : Bool
 
@@ -41,11 +44,15 @@ data ℕ : Type where
   suc  : ℕ → ℕ
 {-# BUILTIN NATURAL ℕ #-}
 
+-- _ ≡ (_ + _)
+
 infix 4 _≡_
 -- based identity type
 data _≡_ {A : Type ℓ} (a : A) : A → Type ℓ where
   refl : a ≡ a
 {-# BUILTIN EQUALITY _≡_ #-}
+
+
 
 module unbased-id where
   infix 4 _≡'_

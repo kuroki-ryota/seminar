@@ -74,8 +74,8 @@ Bool-rec :
   C
   → C
   → (Bool → C)
-Bool-rec a b tt = a
-Bool-rec a b ff = b
+Bool-rec x y tt = x
+Bool-rec x y ff = y
 
 Bool-ind : {C : Bool → Type ℓ}
   → C tt
@@ -105,10 +105,14 @@ Bool-ind a b ff = b
 -- Unit-recとほぼ同じ
 -- (x : A) → (a ≡ x) → C は (Σ x ꞉ A , (a ≡ x)) → C と思える
 
-≡-ind : (a : A) {C : (x : A) → (a ≡ x) → Type ℓ}
+≡-ind : (a : A) {C : (x : A) → a ≡ x → Type ℓ}
   → C a refl
   → ((x : A) → (p : a ≡ x) → C x p)
 ≡-ind a c .a refl = c
+
+-- p : a ≡ a のとき、 p ≡ refl は言えない
+
+
 -- Unit-ind とほぼ同じ
 -- Σ x ꞉ A , (a ≡ x) は Unit と同じ普遍性を持つ
   -- Σ x ꞉ A , (a ≡ x) は型として Unit と同値になる
@@ -128,26 +132,54 @@ Leibniz a c .a refl = c
 Leibniz' : (a b : A) {C : A → Type ℓ}
   → C a
   → (a ≡ b → C b)
-Leibniz' a .a c refl = c
+Leibniz' a .a ca refl = ca
 -- Leibniz' a b {C} c p = ≡-ind a {λ x _ → C x} c b p 
+
+-- axiom K
 
 -- K : (a : A) {D : a ≡ a → Type ℓ}
 --   → D refl
 --   → (p : a ≡ a) → D p
--- K a c refl = c
+-- K a d refl = d
 -- -without-K を抜くと、パターンマッチが強くなってこれが示せる
   -- これによって強正規化や canonicity が崩れるわけではない
   -- K はちゃんと computational content を持っている
--- ただ、 univalence と矛盾するので HoTT をやるときは -without-K を入れる
+-- ただ、 univalence と矛盾するので HoTT をやるときは --without-K を入れる
 
-open unbased-id
+lemma : ∀{ℓ} {A : Type ℓ} (x : A)
+  → ((a : A) (D : a ≡ a → Type ℓ)
+    → D refl
+    → (p : a ≡ a) → D p)  -- axiom K を仮定
+  → (p : x ≡ x) → (p ≡ refl)
+lemma x K = K x (λ q → (q ≡ refl)) refl
 
-≡'-rec :
-  (A → C)
-  → ((x y : A) → (x ≡' y) → C)
-≡'-rec f x .(x) refl = f x
+-- D p    = (p ≡ refl)
+-- D refl = (refl ≡ refl) が満たされる
 
-≡'-ind : {C : (x y : A) → x ≡' y → Type ℓ}
-  → ((x : A) → C x x refl)
-  → ((x y : A) → (p : x ≡' y) → C x y p)
-≡'-ind f x .(x) refl = f x
+-- lemma₁ : ∀{ℓ} {A : Type ℓ} (x : A)
+--   → ((a : A) (C : (x : A) → a ≡ x → Type ℓ)
+--     → C a refl
+--     → ((x : A) → (p : a ≡ x) → C x p)) -- path induction を仮定
+--   → (p : x ≡ x) → (p ≡ refl)
+-- lemma₁ x path-ind = {!   !}
+
+-- C x p    = (p ≡ refl) これはダメ
+-- C x p    = ?
+  -- p : a ≡ x , refl : a ≡ a
+-- C a refl = (refl ≡ refl) を満たしてほしい
+
+-- p : a ≡ x
+
+module unbased-id-ind where
+
+  open unbased-id
+
+  ≡'-rec :
+    (A → C)
+    → ((x y : A) → (x ≡' y) → C)
+  ≡'-rec f x .(x) refl = f x
+
+  ≡'-ind : {C : (x y : A) → x ≡' y → Type ℓ}
+    → ((x : A) → C x x refl)
+    → ((x y : A) → (p : x ≡' y) → C x y p)
+  ≡'-ind f x .(x) refl = f x
