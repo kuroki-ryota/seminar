@@ -17,14 +17,15 @@ Agda ファイルの html 版 : https://yotsunva.github.io/seminar/Diaconescu/ht
 
 ## 08-??
 - transp, tt≠ff
-- higher inductive type
-  - S1
-- refl≠loop
+- univalence と parametric polymorphism
   - Glue, univalence
   - ¬ LEM∞
-- univalence と parametric polymorphism
-  - ¬ LEM∞
 - LEM の定式化
+- higher inductive type
+  - S1
+- ¬ (isSet S¹)
+  - refl≠loop
+  - ¬ LEM∞
 
 ## いつか扱うかもしれない内容
 - 構成的な選択
