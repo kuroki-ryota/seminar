@@ -1,5 +1,6 @@
 {-# OPTIONS --cubical --safe #-}
 module Bool where
+open import Hlevel public
 open import Univalence public
 
 data Bool : Type where
@@ -34,3 +35,8 @@ notIsEquiv = isoToIsEquiv (iso not not notinvol notinvol)
 
 notpath : Bool ≡ Bool
 notpath = ua (not , notIsEquiv)
+
+open Hedberg
+
+issetBool : isSet Bool
+issetBool x y = Hedberg decBoolEq x y

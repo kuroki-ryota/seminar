@@ -63,7 +63,15 @@ ap f p i = f (p i)
 
 apd : (B : A → Type) (f : (x : A) → B x) {x y : A} (p : x ≡ y)
   → (transport (ap B p) (f x)) ≡ f y
-apd B f {x} {y} p = transport lemma₁ lemma₂ where
+apd B f {x} {y} p i =
+  comp (λ j → B (p j))
+  (λ j → λ { (i = i0) → transport (ap B (λ k → p (k ∧ j))) (f x)
+           ; (i = i1) → f (p j)})
+  (transp (λ i → B x) i (f x))
+
+apd' : (B : A → Type) (f : (x : A) → B x) {x y : A} (p : x ≡ y)
+  → (transport (ap B p) (f x)) ≡ f y
+apd' B f {x} {y} p = transport lemma₁ lemma₂ where
   lemma₁ : (transport (ap B refl) (f x) ≡ f x) ≡
     (transport (ap B p) (f x) ≡ f y)
   lemma₁ i = transport (ap B λ j → p (i ∧ j)) (f x) ≡ f (p i)
