@@ -26,12 +26,12 @@ ap f x = ≡-ind x refl
 -- パターンマッチを使えば簡単
 -- ≡-ind でやるのはちょっと難しいかも（ヒント：前者関数を定義しておく）
 suc-inj : (m n : ℕ) → (suc m ≡ suc n) → (m ≡ n)
-suc-inj m n p = ap pred (suc m) (suc n) p
+suc-inj m n = ap pred (suc m) (suc n)
   where
   pred : ℕ → ℕ
   pred = ℕ-ind 0 (λ n _ → n)
 
--- suc-inj m n p = ≡-ind (suc m) {λ x p → m ≡ pred x} refl (suc n) p
+-- suc-inj m n = ≡-ind (suc m) {λ x p → m ≡ pred x} refl (suc n)
 
 
 -- パターンマッチを使えば簡単
