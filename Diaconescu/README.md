@@ -15,7 +15,7 @@ Agda ファイルの html 版 : https://yotsunva.github.io/seminar/Diaconescu/ht
   - Hedberg's theorem
   - isSet Bool
 
-## 08-??
+## 08-19
 - transp, tt≠ff
 - univalence と parametric polymorphism
   - Glue, univalence
@@ -27,11 +27,16 @@ Agda ファイルの html 版 : https://yotsunva.github.io/seminar/Diaconescu/ht
   - refl≠loop
   - ¬ LEM∞
 
-## いつか扱うかもしれない内容
+## 09-??
 - 構成的な選択
 - propositional truncation
-- h-level
-- index type に条件を課さない選択
-- S^1
-  - 連結であること
+- index type に条件を課さない選択 (AC?)
+  - S1 の連結性
+  - ¬ AC?
+- AC の定式化
+
+## いつか扱うかもしれない内容
+- Diaconescu
+  - suspension
+  - surjection
 - ...
