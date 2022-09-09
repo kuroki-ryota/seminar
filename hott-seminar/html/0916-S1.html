@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html><head><meta charset="utf-8"><title>0916-S1</title><link rel="stylesheet" href="Agda.css"></head><body><pre class="Agda"><a id="1" class="Symbol">{-#</a> <a id="5" class="Keyword">OPTIONS</a> <a id="13" class="Pragma">--without-K</a> <a id="25" class="Pragma">--rewriting</a> <a id="37" class="Symbol">#-}</a>
+<a id="41" class="Keyword">module</a> <a id="48" href="0916-S1.html" class="Module">0916-S1</a> <a id="56" class="Keyword">where</a>
+<a id="62" class="Keyword">open</a> <a id="67" class="Keyword">import</a> <a id="74" href="0909-prelude.html" class="Module">0909-prelude</a> <a id="87" class="Keyword">public</a>
+
+<a id="95" class="Keyword">postulate</a>
+  <a id="S1"></a><a id="107" href="0916-S1.html#107" class="Postulate">S1</a> <a id="110" class="Symbol">:</a> <a id="112" href="Agda.Primitive.html#326" class="Primitive">Type</a>
+
+  <a id="base"></a><a id="120" href="0916-S1.html#120" class="Postulate">base</a> <a id="125" class="Symbol">:</a> <a id="127" href="0916-S1.html#107" class="Postulate">S1</a>
+  <a id="loop"></a><a id="132" href="0916-S1.html#132" class="Postulate">loop</a> <a id="137" class="Symbol">:</a> <a id="139" href="0916-S1.html#120" class="Postulate">base</a> <a id="144" href="0811-inductive-types.html#983" class="Datatype Operator">≡</a> <a id="146" href="0916-S1.html#120" class="Postulate">base</a>
+
+  <a id="S1-rec"></a><a id="154" href="0916-S1.html#154" class="Postulate">S1-rec</a> <a id="161" class="Symbol">:</a> <a id="163" class="Symbol">(</a><a id="164" href="0916-S1.html#164" class="Bound">x</a> <a id="166" class="Symbol">:</a> <a id="168" href="0811-inductive-types.html#155" class="Generalizable">C</a><a id="169" class="Symbol">)</a> <a id="171" class="Symbol">(</a><a id="172" href="0916-S1.html#172" class="Bound">p</a> <a id="174" class="Symbol">:</a> <a id="176" href="0916-S1.html#164" class="Bound">x</a> <a id="178" href="0811-inductive-types.html#983" class="Datatype Operator">≡</a> <a id="180" href="0916-S1.html#164" class="Bound">x</a><a id="181" class="Symbol">)</a> <a id="183" class="Symbol">→</a> <a id="185" href="0916-S1.html#107" class="Postulate">S1</a> <a id="188" class="Symbol">→</a> <a id="190" href="0811-inductive-types.html#155" class="Generalizable">C</a>
+  
+  <a id="S1-rec-base"></a><a id="197" href="0916-S1.html#197" class="Postulate">S1-rec-base</a> <a id="209" class="Symbol">:</a> <a id="211" class="Symbol">(</a><a id="212" href="0916-S1.html#212" class="Bound">x</a> <a id="214" class="Symbol">:</a> <a id="216" href="0811-inductive-types.html#155" class="Generalizable">C</a><a id="217" class="Symbol">)</a> <a id="219" class="Symbol">(</a><a id="220" href="0916-S1.html#220" class="Bound">p</a> <a id="222" class="Symbol">:</a> <a id="224" href="0916-S1.html#212" class="Bound">x</a> <a id="226" href="0811-inductive-types.html#983" class="Datatype Operator">≡</a> <a id="228" href="0916-S1.html#212" class="Bound">x</a><a id="229" class="Symbol">)</a>
+                  <a id="249" class="Symbol">→</a> <a id="251" href="0916-S1.html#154" class="Postulate">S1-rec</a> <a id="258" href="0916-S1.html#212" class="Bound">x</a> <a id="260" href="0916-S1.html#220" class="Bound">p</a> <a id="262" href="0916-S1.html#120" class="Postulate">base</a> <a id="267" href="0811-inductive-types.html#983" class="Datatype Operator">≡</a> <a id="269" href="0916-S1.html#212" class="Bound">x</a>
+                  
+  <a id="292" class="Symbol">{-#</a> <a id="296" class="Keyword">REWRITE</a> <a id="304" href="0916-S1.html#197" class="Postulate">S1-rec-base</a> <a id="316" class="Symbol">#-}</a>
+
+  <a id="S1-rec-loop"></a><a id="323" href="0916-S1.html#323" class="Postulate">S1-rec-loop</a> <a id="335" class="Symbol">:</a> <a id="337" class="Symbol">(</a><a id="338" href="0916-S1.html#338" class="Bound">x</a> <a id="340" class="Symbol">:</a> <a id="342" href="0811-inductive-types.html#155" class="Generalizable">C</a><a id="343" class="Symbol">)</a> <a id="345" class="Symbol">(</a><a id="346" href="0916-S1.html#346" class="Bound">p</a> <a id="348" class="Symbol">:</a> <a id="350" href="0916-S1.html#338" class="Bound">x</a> <a id="352" href="0811-inductive-types.html#983" class="Datatype Operator">≡</a> <a id="354" href="0916-S1.html#338" class="Bound">x</a><a id="355" class="Symbol">)</a>
+              <a id="371" class="Symbol">→</a> <a id="373" href="0909-prelude.html#1101" class="Function">ap</a> <a id="376" class="Symbol">(</a><a id="377" href="0916-S1.html#154" class="Postulate">S1-rec</a> <a id="384" href="0916-S1.html#338" class="Bound">x</a> <a id="386" href="0916-S1.html#346" class="Bound">p</a><a id="387" class="Symbol">)</a> <a id="389" href="0916-S1.html#132" class="Postulate">loop</a> <a id="394" href="0811-inductive-types.html#983" class="Datatype Operator">≡</a> <a id="396" href="0916-S1.html#346" class="Bound">p</a>
+
+
+<a id="400" class="Comment">-- S1 (6.4)</a>
+  <a id="414" class="Comment">-- ¬ (loop ≡ refl)</a>
+  <a id="435" class="Comment">-- (base ≡ base) ≃ int （やらない）</a>
+<a id="465" class="Comment">-- truncation , quotient type (6.9 , 6.10)</a>
+  <a id="510" class="Comment">-- well-definedness と除去則の関係</a></pre></body></html>

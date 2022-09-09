@@ -59,6 +59,10 @@ transport : (B : A → Type ℓ)
           → {x y : A} → x ≡ y → B x → B y
 transport B refl a = a
 
+apd : {B : A → Type ℓ}
+  (f : (x : A) → B x) {x y : A} (p : x ≡ y) → transport B p (f x) ≡ f y
+apd f refl = refl
+
 -- transportconst : {x y : A} (p : x ≡ y) (b : B)
 --   → transport (λ _ → B) p b ≡ b
 -- transportconst refl b = refl
@@ -68,8 +72,11 @@ f ∼ g = ∀ x → f x ≡ g x
 
 infix 0 _∼_
 
+-- reasoning
 _≡⟨_⟩_ : (x : A) {y z : A} → x ≡ y → y ≡ z → x ≡ z
 x ≡⟨ p ⟩ q = p ∙ q
+
+-- a = b , b = c , c = d → a = d
 
 _∎ : (x : A) → x ≡ x
 x ∎ = refl
@@ -114,9 +121,16 @@ idtoeqv : (A ≡ B) → (A ≃ B)
 idtoeqv p = Equiv (transport id p) (lemma p) where
   lemma : (p : A ≡ B) → is-equiv (transport id p)
   lemma refl = idiseqv
+
+
+  
+-- p = Equiv (transport id p) (lemma p) where
+--   lemma : (p : A ≡ B) → is-equiv (transport id p)
+--   lemma refl = idiseqv
 -- idtoeqv refl = Equiv id idiseqv
 
 
+-- identity is equivalent to equivalence
 postulate
   univ : is-equiv (idtoeqv {A = A} {B})
 
@@ -132,21 +146,37 @@ module _ {A B : Type ℓ} where
   univ-uniq : (p : A ≡ B) → ua (idtoeqv p) ≡ p
   univ-uniq p = linveq univ p
 
+
+  -- ua ∼ ua ∘ idtoeqv ∘ ua' ∼ ua'
+
   ua∼ua' : ua ∼ ua'
   ua∼ua' f =
     ua f                 ≡⟨ ! (ap ua (univ-comp' f)) ⟩
     ua (idtoeqv (ua' f)) ≡⟨ univ-uniq (ua' f) ⟩
-    ua' f                ∎
+    ua' f ∎
   
   univ-comp : (f : A ≃ B) → idtoeqv (ua f) ≡ f
   univ-comp f =
     idtoeqv (ua f)  ≡⟨ ap idtoeqv (ua∼ua' f) ⟩
     idtoeqv (ua' f) ≡⟨ univ-comp' f ⟩
     f ∎
-  
+
   uaβ : (f : A → B) (eqv : is-equiv f) (x : A)
-    → (idtoeqv (ua (Equiv f eqv))).map x ≡ f x
-  uaβ f eqv x = ap (λ f → f .map x) lemma
+    → transport id (ua (Equiv f eqv)) x ≡ f x
+  uaβ f eqv x = ap (λ g → map g x) lemma
     where
     lemma : idtoeqv (ua (Equiv f eqv)) ≡ Equiv f eqv
-    lemma = (univ-comp (Equiv f eqv))
+    lemma = univ-comp (Equiv f eqv)
+
+  
+isContr : Type ℓ → Type ℓ
+isContr A = Σ a ꞉ A , ((x : A) → a ≡ x)
+
+-- isSet : Type ℓ → Type ℓ
+-- isSet A = {x y : A} → (p q : x ≡ y) → p ≡ q
+
+isContr→≃Unit : isContr A → A ≃ Unit
+isContr→≃Unit (a , f) =
+  Equiv (λ _ → star)
+    (Inverse (λ _ → a) f
+      (λ _ → a) (λ {star → refl}))
