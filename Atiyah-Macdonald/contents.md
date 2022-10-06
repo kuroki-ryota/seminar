@@ -8,5 +8,5 @@ https://www.cambridge.org/core/journals/bulletin-of-symbolic-logic/article/jacob
 - Lombardi-Quitté Exercise IX-4
 https://arxiv.org/abs/1605.04832
 ### 1-9-a
-modular law, numerical semigroup, Tn(R) (path algebra), monomial ideal  
-todo : Arithmetic rings
+modular law, numerical semigroup, T2(R) (path algebra), monomial ideal  
+todo : Arithmetic ring
