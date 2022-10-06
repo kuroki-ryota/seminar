@@ -1,4 +1,3 @@
-ゼミのメモ
 ## 文献
 ### 1-9
 - The Jacobson Radical of a Propositional Theory
