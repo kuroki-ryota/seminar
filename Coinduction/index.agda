@@ -1,5 +1,5 @@
 {-# OPTIONS --cubical --guardedness --safe #-}
 
-import Prelude
+import Basic
 import Natural
 import Conatural

@@ -1,6 +1,6 @@
 {-# OPTIONS --cubical --guardedness --safe #-}
 module Natural where
-open import Prelude public
+open import Basic public
 
 data ℕ : Type where
   zero : ℕ
