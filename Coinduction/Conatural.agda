@@ -7,9 +7,11 @@ record ℕ∞ : Type where
   field
     prd∞ : 1+ ℕ∞
 
-open ℕ∞
+open ℕ∞ public
 
+-- C-c C-c で copattern matching
 
+-- anamorphism
 ℕ∞-corec' :
   (C → 1+ C)
   → C → ℕ∞
@@ -17,6 +19,7 @@ prd∞ (ℕ∞-corec' f c) with f c
 ... | nothing = nothing
 ... | just x  = just (ℕ∞-corec' f x)
 
+-- apomorphism
 ℕ∞-corec :
   (C → 1+ (ℕ∞ + C))
   → C → ℕ∞
@@ -51,7 +54,7 @@ prd∞ (suc∞ x) = just x
 -- prd∞ (eq₂ i x) = just x
 
 ℕ→ℕ∞ : ℕ → ℕ∞
-prd∞ (ℕ→ℕ∞ zero) = nothing
+prd∞ (ℕ→ℕ∞ zero)    = nothing
 prd∞ (ℕ→ℕ∞ (suc n)) = just (ℕ→ℕ∞ n)
 
 -- eq₃ : ℕ∞-corec' {C = ℕ} (λ {zero → nothing

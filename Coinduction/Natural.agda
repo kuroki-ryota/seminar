@@ -29,12 +29,14 @@ data ℕ : Type where
 data Nat : Type where
   succ : 1+ Nat → Nat
 
+-- catamorphism
 Nat-rec' :
   ((1+ C) → C)
   → Nat → C
 Nat-rec' f (succ nothing)  = f nothing
 Nat-rec' f (succ (just n)) = f (just (Nat-rec' f n))
 
+-- paramorphism
 Nat-rec :
   ((1+ (Nat × C)) → C)
   → Nat → C
