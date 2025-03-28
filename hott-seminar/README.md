@@ -1,3 +1,3 @@
 HoTT book のゼミの資料
 
-html : https://yotsunva.github.io/seminar/hott-seminar/html/
+html : https://kuroki-ryota.github.io/seminar/hott-seminar/html/
